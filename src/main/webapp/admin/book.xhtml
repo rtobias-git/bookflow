@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="primefaces"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <body>
+
+        <ui:composition template="/index.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2" layout="tabular">
+                        <f:facet name="header">
+                            Cadastro de Books
+                        </f:facet>
+
+                        <h:outputLabel for="@next" value="title"/>
+                            <p:inputText value="#{bookBean.book.title}" required="true" requiredMessage="O autor é obrigatorio"/>
+
+                        <h:outputLabel for="@next" value="isbn"/>
+                            <p:inputText value="#{bookBean.book.isbn}"/>
+
+                        <h:outputLabel for="@next" value="Categoria"/>
+                            <p:selectOneMenu value="#{bookBean.categoriaSelecionada}" required="true" requiredMessage="A categoria é obrigatorio">
+                                <f:selectItem itemLabel="Selecione uma categoria" itemValue="#{null}"/>
+                                <f:selectItems value="#{bookBean.obterCategorias()}" var="categoria" itemLabel="#{categoria.name}" itemValue="#{categoria}"/>
+                            </p:selectOneMenu>
+
+                        <h:outputLabel for="@next" value="Situacao"/>
+                            <p:selectOneMenu validator="#{bookBean.sitSelecionada}">
+                                <f:selectItem itemLabel="Selecione a disponibilidade" itemValue="#{null}"/>
+                                <f:selectItem itemLabel="Sim" itemValue="SIM"/>
+                                <f:selectItem itemLabel="Não" itemValue="NAO"/>
+                            </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:commandButton value="Cadastrar" action="#{bookBean.adicionar()}"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

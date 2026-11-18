@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>BookFlow - Login</title>
+        <h:outputStylesheet name="css/bookflow.css"/>
+    </h:head>
+
+    <h:body>
+        <p:growl id="growl" showDetail="true"/>
+
+        <h:form id="loginForm">
+            <p:growl id="growl" globalOnly="false" showDetail="true"/>
+            <p:panel header="BookFlow - Entrar" styleClass="login-box">
+                <div class="field">
+                    <p:outputLabel for="email" value="E-mail"/>
+                    <p:inputText id="email" value="#{loginBean.usuario.email}" style="width:100%" required="true"
+                                 requiredMessage="O email nao pode estar vazio"/>
+                    <p:message for="email"/>
+                </div>
+
+                <div class="field">
+                    <p:outputLabel for="password" value="Senha"/>
+                    <p:password id="password" value="#{loginBean.usuario.password}" style="width:100%"
+                                feedback="false"/>
+                    <p:message for="password"/>
+                </div>
+
+                <p:commandButton value="Entrar" icon="pi pi-sign-in"
+                                 action="#{loginBean.acessar()}" update="@form :formGrowl:growl"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

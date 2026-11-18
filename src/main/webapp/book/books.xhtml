@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="primefaces"
+      xmlns:f="jakarta.faces.core">
+
+    <body>
+
+        <ui:composition template="/index.xhtml">
+
+            <ui:define name="content">
+                
+                <h:form>
+                    
+                    <h:outputLabel for="@next" value="Filtrar por Categoria"/>
+                    <p:selectOneMenu value="#{bookBean.categoriaSelecionada}">
+                        <f:selectItem itemLabel="Selecione uma categoria" itemValue="#{null}"/>
+                        <f:selectItems value="#{bookBean.obterCategorias()}" var="categoria" itemLabel="#{categoria.name}" itemValue="#{categoria}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:commandButton value="Filtrar" action="#{bookBean.filtrar()}" update="tabela"/>
+                    
+                    <p:dataTable id="tabela"
+                                 value="#{bookBean.obterLivros()}"
+                                 var="book">
+                        <f:facet name="header">
+                            Lista de Books
+                        </f:facet>
+                        
+                        <p:column headerText="Title">
+                            <h:outputText value="#{book.title}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Author">
+                            <h:outputText value="#{book.author}"/>
+                        </p:column>
+                        
+                        <p:column headerText="ISBN">
+                            <h:outputText value="#{book.isbn}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{book.category.name}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Available">
+                            <h:outputText value="#{book.available ? 'Sim' : 'Nãoã'}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
