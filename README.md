@@ -61,11 +61,22 @@ mvn clean package
 
 O artefato empacotado `target/bookflow-1.0.war` estara pronto para publicacao no GlassFish 7.
 
-## Demonstracao do Build
+## Demonstracao da Interface Web
 
-Abaixo segue a captura da compilacao e empacotamento do pacote WAR com Maven:
+### Catalogo e Listagem de Livros
+Listagem dinamica de livros com selecao e filtro por categoria, status de disponibilidade e paginacao:
 
-![Build do BookFlow](images/build_bookflow.png)
+![Listagem de Livros](images/listagem_livros.png)
+
+### Cadastro de Livros (Area Administrativa)
+Formulario restrito a usuarios com perfil ADMIN para inclusao de novas obras e definicao de ISBN e categoria:
+
+![Cadastro de Livro](images/cadastro_livro.png)
+
+### Tela de Autenticacao
+Acesso ao sistema com validacao de credenciais e controle de sessao:
+
+![Tela de Login](images/tela_login.png)
 
 ## Acesso e Credenciais Padrao
 
